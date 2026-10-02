@@ -9,6 +9,7 @@
 <meta property="og:description" content="Presentes feitos com carinho — e cada compra faz o bem. Veja os produtos de cada banca.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#143628">
+<meta name="referrer" content="no-referrer">
 <!--
   Thin frame around the Apps Script catalog. Framing hides Google's "created by a Google Apps
   Script user" banner and gives a short address. All data and logic stay in Apps Script.
@@ -24,12 +25,13 @@
 </style>
 </head>
 <body>
-<div class="loading" aria-hidden="true"><span>✦ Feira Beneficente de Natal ✦</span>Carregando o catálogo…</div>
+<div class="loading" aria-hidden="true"><span>✦ Feira Beneficente de Natal ✦</span>Carregando…</div>
 <noscript><p class="loading"><a href="https://script.google.com/macros/s/AKfycbzBUKwrPuA_W9xHBCx38d-Ea5HERya7MVBspRMyTim9AFP8LBlvsYv9RyXEdEUYVVc/exec">Abrir o catálogo</a></p></noscript>
 <script>
   // Same deep-link params the catalog accepts (see Core.js parseRouteParams); anything else is dropped.
   var EXEC = 'https://script.google.com/macros/s/AKfycbzBUKwrPuA_W9xHBCx38d-Ea5HERya7MVBspRMyTim9AFP8LBlvsYv9RyXEdEUYVVc/exec';
-  var PATTERNS = { banca: /^B\d{1,4}$/, item: /^I\d{1,6}$/, ver: /^bancas$/, cat: /^[^<>"'&]{1,40}$/ };
+  // cadastro = a vendor's upload token (32 hex chars from Utilities.getUuid without dashes).
+  var PATTERNS = { banca: /^B\d{1,4}$/, item: /^I\d{1,6}$/, ver: /^bancas$/, cat: /^[^<>"'&]{1,40}$/, cadastro: /^[A-Fa-f0-9]{32}$/ };
   var incoming = new URLSearchParams(location.search);
   var forwarded = new URLSearchParams();
   Object.keys(PATTERNS).forEach(function (key) {
@@ -37,7 +39,7 @@
     if (value && PATTERNS[key].test(value)) forwarded.set(key, value);
   });
   var frame = document.createElement('iframe');
-  frame.title = 'Catálogo da Feira Beneficente de Natal';
+  frame.title = forwarded.has('cadastro') ? 'Cadastro de produtos' : 'Catálogo da Feira Beneficente de Natal';
   frame.src = EXEC + (forwarded.toString() ? '?' + forwarded.toString() : '');
   frame.allow = 'clipboard-write';
   document.body.appendChild(frame);
