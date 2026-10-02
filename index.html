@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Feira Beneficente de Natal — Catálogo</title>
+<meta name="description" content="Veja os produtos das bancas da Feira Beneficente de Natal. Pagamento e retirada nas bancas, no dia da feira.">
+<meta property="og:title" content="Feira Beneficente de Natal — Catálogo">
+<meta property="og:description" content="Presentes feitos com carinho — e cada compra faz o bem. Veja os produtos de cada banca.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#143628">
+<!--
+  Thin frame around the Apps Script catalog. Framing hides Google's "created by a Google Apps
+  Script user" banner and gives a short address. All data and logic stay in Apps Script.
+  Source of truth: catalogo_bene/site/index.html — publish with `npm run site:deploy`.
+-->
+<style>
+  html, body { margin: 0; height: 100%; background: #143628; }
+  .loading { position: fixed; inset: 0; display: grid; place-content: center; gap: 10px; text-align: center;
+             color: #f7efdc; font: italic 400 1.15rem/1.3 Georgia, "Times New Roman", serif; }
+  .loading span { color: #c49a4a; font: 700 .72rem/1 system-ui, sans-serif; letter-spacing: .22em; text-transform: uppercase; font-style: normal; }
+  iframe { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; background: transparent; }
+  noscript a { color: #f7efdc; }
+</style>
+</head>
+<body>
+<div class="loading" aria-hidden="true"><span>✦ Feira Beneficente de Natal ✦</span>Carregando o catálogo…</div>
+<noscript><p class="loading"><a href="https://script.google.com/macros/s/AKfycbzBUKwrPuA_W9xHBCx38d-Ea5HERya7MVBspRMyTim9AFP8LBlvsYv9RyXEdEUYVVc/exec">Abrir o catálogo</a></p></noscript>
+<script>
+  // Same deep-link params the catalog accepts (see Core.js parseRouteParams); anything else is dropped.
+  var EXEC = 'https://script.google.com/macros/s/AKfycbzBUKwrPuA_W9xHBCx38d-Ea5HERya7MVBspRMyTim9AFP8LBlvsYv9RyXEdEUYVVc/exec';
+  var PATTERNS = { banca: /^B\d{1,4}$/, item: /^I\d{1,6}$/, ver: /^bancas$/, cat: /^[^<>"'&]{1,40}$/ };
+  var incoming = new URLSearchParams(location.search);
+  var forwarded = new URLSearchParams();
+  Object.keys(PATTERNS).forEach(function (key) {
+    var value = incoming.get(key);
+    if (value && PATTERNS[key].test(value)) forwarded.set(key, value);
+  });
+  var frame = document.createElement('iframe');
+  frame.title = 'Catálogo da Feira Beneficente de Natal';
+  frame.src = EXEC + (forwarded.toString() ? '?' + forwarded.toString() : '');
+  frame.allow = 'clipboard-write';
+  document.body.appendChild(frame);
+</script>
+</body>
+</html>
