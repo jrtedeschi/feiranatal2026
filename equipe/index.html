@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guia do Catálogo da Feira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,650;1,9..144,400&family=Figtree:wght@400;600;700&display=swap">
+<style>
+  :root {
+    --bg: #f7f2e8; --surface: #fffcf6; --ink: #1d2a24; --muted: #5f6a63; --line: #e3d8c4;
+    --pine: #1f4d3a; --pine-deep: #143628; --on-pine: #f7efdc; --berry: #a3262a; --gold: #b0863a;
+    --display: "Fraunces", Georgia, "Times New Roman", serif;
+    --body: "Figtree", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1d17; --surface: #16271f; --ink: #f1ead9; --muted: #a3ab9f; --line: #2a3f34;
+      --pine: #9cc9ae; --pine-deep: #0b1712; --on-pine: #f1ead9; --berry: #e2797b; --gold: #d9b46a;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1d17; --surface: #16271f; --ink: #f1ead9; --muted: #a3ab9f; --line: #2a3f34;
+    --pine: #9cc9ae; --pine-deep: #0b1712; --on-pine: #f1ead9; --berry: #e2797b; --gold: #d9b46a;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 var(--body); padding-inline: 16px; }
+  .page { max-width: 760px; margin: 0 auto; padding-block: 28px 48px; display: grid; gap: 34px; }
+
+  header { display: grid; gap: 8px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+  .eyebrow { margin: 0; color: var(--gold); font: 700 .74rem/1 var(--body); letter-spacing: .2em; text-transform: uppercase; }
+  h1 { margin: 0; font: 650 clamp(2rem, 1.4rem + 3vw, 2.9rem)/1.02 var(--display); letter-spacing: -.015em; text-wrap: balance; }
+  .lead { margin: 4px 0 0; max-width: 60ch; font: italic 400 1.12rem/1.45 var(--display); color: var(--muted); }
+
+  .flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; counter-reset: stage; }
+  .flow li { counter-increment: stage; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 4px; align-content: start; }
+  .flow li::before { content: counter(stage); display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%;
+                     background: var(--pine-deep); color: var(--on-pine); box-shadow: inset 0 0 0 1.5px var(--gold); font: 650 .85rem/1 var(--display); }
+  .flow strong { font-weight: 700; line-height: 1.25; }
+  .flow span { color: var(--muted); font-size: .85rem; line-height: 1.35; }
+  @media (max-width: 620px) { .flow { grid-template-columns: 1fr 1fr; } }
+
+  section { display: grid; grid-template-columns: 150px 1fr; gap: 6px 26px; }
+  section > h2 { margin: 0; font: 650 1.3rem/1.15 var(--display); text-wrap: balance; }
+  section > h2 small { display: block; margin-top: 6px; color: var(--muted); font: 600 .72rem/1.3 var(--body); letter-spacing: .14em; text-transform: uppercase; }
+  .body { display: grid; gap: 10px; max-width: 64ch; }
+  @media (max-width: 620px) { section { grid-template-columns: 1fr; } }
+
+  ol.steps, ul.points { margin: 0; padding-left: 1.25em; display: grid; gap: 9px; }
+  ol.steps li::marker { font: 650 1rem var(--display); color: var(--pine); }
+  ul.points li::marker { color: var(--gold); }
+  p { margin: 0; }
+  b, strong { font-weight: 700; }
+
+  .menu { white-space: nowrap; font-weight: 700; color: var(--pine); }
+  .tab { font-weight: 700; padding: 0 5px; border-radius: 4px; background: color-mix(in srgb, var(--pine) 12%, transparent); }
+  .stamp { display: inline-block; transform: rotate(-6deg); border: 1.5px solid var(--berry); color: var(--berry); border-radius: 3px;
+           padding: 0 6px; font: 650 .78rem/1.5 var(--display); letter-spacing: .14em; }
+  .status { font-size: .72rem; font-weight: 700; letter-spacing: .08em; border: 1.5px solid currentColor; border-radius: 4px; padding: 0 5px; }
+  .s-pend { color: var(--gold); } .s-ok { color: var(--pine); } .s-sold { color: var(--berry); }
+  .note { border-left: 3px solid var(--gold); padding: 8px 12px; background: var(--surface); border-radius: 0 8px 8px 0; font-size: .93rem; }
+
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: .93rem; }
+  th { text-align: left; font: 700 .72rem/1.2 var(--body); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding: 0 12px 8px 0; border-bottom: 1px solid var(--line); }
+  td { vertical-align: top; padding: 9px 12px 9px 0; border-bottom: 1px solid var(--line); }
+  td:first-child { width: 42%; font-weight: 600; }
+
+  .links { display: grid; gap: 10px; }
+  .link { display: grid; grid-template-columns: 1fr auto; gap: 4px 14px; align-items: center; background: var(--surface);
+          border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+  .link h3 { margin: 0; font: 650 1.05rem/1.2 var(--display); }
+  .link p { grid-column: 1; color: var(--muted); font-size: .88rem; }
+  .link code { grid-column: 1 / -1; font: .78rem/1.4 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: var(--muted); overflow-wrap: anywhere; }
+  .link a.open { grid-column: 2; grid-row: 1 / span 2; justify-self: end; text-decoration: none; background: var(--pine); color: var(--on-pine);
+                 font-weight: 700; font-size: .9rem; padding: 10px 14px; border-radius: 999px; white-space: nowrap; }
+  .link a.open:hover { filter: brightness(1.1); }
+  .link a.open:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .link a.open { color: var(--bg); } }
+  :root[data-theme="dark"] .link a.open { color: var(--bg); }
+  footer { color: var(--muted); font-size: .85rem; text-align: center; padding-top: 18px; border-top: 1px solid var(--line); }
+  footer em { font: italic 400 1rem var(--display); color: var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header>
+    <p class="eyebrow">Feira Beneficente de Natal</p>
+    <h1>Guia do Catálogo</h1>
+    <p class="lead">Como o catálogo funciona, do cadastro das bancas até o dia da feira. Tudo fica numa planilha do Google, e o site lê dessa planilha sozinho.</p>
+  </header>
+
+  <ol class="flow" aria-label="O caminho de um produto">
+    <li><strong>A banca envia</strong><span>fotos, preços e quantidades pelo link dela</span></li>
+    <li><strong>A organização aprova</strong><span>na aba Itens da planilha</span></li>
+    <li><strong>O catálogo mostra</strong><span>visitantes veem pelo celular</span></li>
+    <li><strong>A venda é marcada</strong><span>no dia da feira, pela quantidade</span></li>
+  </ol>
+
+  <section aria-labelledby="links">
+    <h2 id="links">Links<small>Guarde estes</small></h2>
+    <div class="body links">
+      <div class="link"><h3>Catálogo</h3><p>O site que os visitantes abrem. Use este endereço em cartazes, QR codes e no WhatsApp.</p>
+        <a class="open" href="https://jrtedeschi.github.io/feiranatal2026/" target="_blank" rel="noopener">Abrir</a><code>jrtedeschi.github.io/feiranatal2026</code></div>
+      <div class="link"><h3>Planilha</h3><p>Onde tudo é cadastrado e as vendas são marcadas. Só abre para quem foi adicionado pela organização.</p>
+        <a class="open" href="https://docs.google.com/spreadsheets/d/14z16NBREPL1n83-iO7Me2WbQy4R7TE9DH9KHFhKov0M/edit" target="_blank" rel="noopener">Abrir</a><code>https://docs.google.com/spreadsheets/d/14z16NBREPL1n83-iO7Me2WbQy4R7TE9DH9KHFhKov0M/edit</code></div>
+      <div class="link"><h3>Página de uma banca</h3><p>O endereço do catálogo com <b>?banca=</b> e o código da banca no fim. Bom para o QR code de cada banca.</p>
+        <a class="open" href="https://jrtedeschi.github.io/feiranatal2026/?banca=B01" target="_blank" rel="noopener">Exemplo</a><code>jrtedeschi.github.io/feiranatal2026/?banca=B01</code></div>
+      <p class="note">O link de cadastro de cada banca e o link de prévia não ficam aqui de propósito: são secretos. Eles estão na planilha.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="org">
+    <h2 id="org">Organização<small>Antes da feira</small></h2>
+    <div class="body">
+      <ol class="steps">
+        <li>Na aba <span class="tab">Bancas</span>, preencha uma linha por banca: <b>Nome</b>, <b>Banca (nº)</b>, <b>Instagram</b> e <b>Sobre</b>, uma frase sobre a banca. Instagram e Sobre são opcionais. O código da banca (B01, B02…) aparece sozinho.</li>
+        <li>Na aba <span class="tab">Feira</span>, escreva a <b>Data</b>, o <b>Horário</b>, o <b>Local</b> e a <b>Causa</b> que a feira apoia. Isso aparece no topo do catálogo. O que ficar vazio não aparece.</li>
+        <li>Clique em <span class="menu">Catálogo → Gerar links de cadastro</span>. Copie o link da coluna <b>Link de cadastro</b> e mande para a banca pelo WhatsApp. Cada banca tem o seu link.</li>
+        <li>Quando os produtos chegarem, abra a aba <span class="tab">Itens</span>. Olhe a foto na coluna <b>Prévia</b>, confira nome e preço e marque <b>Visível no catálogo</b>. Só aparece no catálogo o que estiver marcado.</li>
+        <li>Linha vermelha quer dizer que falta algo ou que um valor está errado: preço, quantidade, categoria ou banca. Corrija e a linha volta ao normal.</li>
+        <li>Para ver o catálogo com os produtos que ainda não foram aprovados, use <span class="menu">Catálogo → Abrir prévia</span>. Esse link é só da organização.</li>
+        <li>Quando acabar o prazo, use <span class="menu">Catálogo → Fechar cadastro</span>. Os links das bancas param de aceitar produtos. Dá para reabrir pelo mesmo menu.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section aria-labelledby="bancas">
+    <h2 id="bancas">Bancas<small>Cadastrar produtos</small></h2>
+    <div class="body">
+      <ul class="points">
+        <li>Abra o link que a organização mandou. Não precisa de conta do Google.</li>
+        <li>Toque em <b>Escolher fotos</b>. Pode escolher várias de uma vez, uma foto para cada produto.</li>
+        <li>Em cada foto, preencha <b>nome</b>, <b>preço</b>, <b>quantidade</b> e <b>categoria</b>. A descrição é opcional. Se todos forem da mesma categoria, use <b>Categoria para todos</b>.</li>
+        <li>Toque em <b>Enviar tudo</b> e espere a mensagem de confirmação. Se algum produto falhar, toque em Enviar tudo de novo. Os que já foram não se repetem.</li>
+        <li>Em <b>Meus produtos</b> aparece a situação de cada um: <span class="status s-pend">PENDENTE</span> esperando aprovação, <span class="status s-ok">APROVADO</span> já no catálogo, <span class="status s-sold">VENDIDO</span> esgotado.</li>
+        <li>Para corrigir um produto já enviado, fale com a organização.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="visitantes">
+    <h2 id="visitantes">Visitantes<small>Ver o catálogo</small></h2>
+    <div class="body">
+      <ul class="points">
+        <li>Abrem o catálogo pelo QR code dos cartazes ou pelo link que a feira divulgar. Cada banca também pode ter o QR code da própria página.</li>
+        <li>Podem buscar pelo nome, filtrar por categoria e abrir a lista de <b>Bancas</b> para ver os produtos de cada uma.</li>
+        <li>O catálogo só mostra. O pagamento e a retirada são feitos na banca, no dia da feira.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="dia">
+    <h2 id="dia">Voluntários<small>No dia da feira</small></h2>
+    <div class="body">
+      <ol class="steps">
+        <li>Vendeu um produto? Na aba <span class="tab">Itens</span>, encontre a linha pelo nome do produto. No computador use Ctrl+F, no celular a lupa.</li>
+        <li>Confira a coluna <b>Banca</b>, porque bancas diferentes podem ter produtos com nomes parecidos.</li>
+        <li>Diminua a <b>Quantidade</b>. Ela é o número de peças que ainda restam na banca.</li>
+        <li>Quando chegar a <b>0</b>, o catálogo mostra o carimbo <span class="stamp">VENDIDO</span>. O site atualiza em até 1 minuto.</li>
+      </ol>
+      <p class="note">Voluntários só conseguem mudar a coluna Quantidade. O resto da planilha é protegido para ninguém apagar um preço sem querer.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="problemas">
+    <h2 id="problemas">Se algo der errado</h2>
+    <div class="body table-wrap">
+      <table>
+        <thead><tr><th scope="col">O que aconteceu</th><th scope="col">O que fazer</th></tr></thead>
+        <tbody>
+          <tr><td>Mudei a planilha e o site não mudou</td><td>Espere 1 minuto e recarregue. Se continuar igual, use <span class="menu">Catálogo → Limpar cache do catálogo</span>.</td></tr>
+          <tr><td>A foto de um produto não aparece</td><td>Use <span class="menu">Catálogo → Verificar fotos e compartilhamento</span>. Ele corrige o acesso às fotos e lista as que sumiram.</td></tr>
+          <tr><td>Uma banca perdeu o link, ou o link foi parar com outra pessoa</td><td>Clique na linha da banca na aba Bancas e use <span class="menu">Catálogo → Gerar novo link</span>. O link antigo para de funcionar.</td></tr>
+          <tr><td>Uma banca mudou de nome</td><td>Clique na linha da banca e use <span class="menu">Catálogo → Renomear banca selecionada</span>. Todos os produtos dela são atualizados.</td></tr>
+          <tr><td>O menu Catálogo não aparece</td><td>Recarregue a planilha e espere alguns segundos.</td></tr>
+          <tr><td>Aparece “Somente a organização pode usar este menu”</td><td>O menu só funciona para a conta dona da planilha. Peça para essa pessoa fazer.</td></tr>
+          <tr><td>A banca vê “Link inválido ou desativado”</td><td>O link foi trocado. Mande o link atual da coluna Link de cadastro.</td></tr>
+          <tr><td>A banca vê “Cadastro encerrado”</td><td>O cadastro foi fechado. Se precisar, use <span class="menu">Catálogo → Reabrir cadastro</span>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>Dúvidas? Fale com a organização da feira.<br><em>Obrigado por ajudar a fazer a feira acontecer!</em></footer>
+</div>
+</body>
+</html>
