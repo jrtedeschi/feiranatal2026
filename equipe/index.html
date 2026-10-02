@@ -126,6 +126,26 @@
   .tips h3 { margin: 0; font: 650 1.02rem/1.2 var(--display); }
   .tips ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
   .tips li::marker { color: var(--gold); }
+  .mock-sheet.nowrap td, .mock-sheet.nowrap th { white-space: nowrap; }
+  .mock-sheet .auto { color: #80868b; font-style: italic; background: #f8f9fa; }
+  .mock-sheet .new td { background: #fef7e0; }
+  .mock-sheet .link-cell { color: #1a73e8; text-decoration: underline; white-space: nowrap; }
+  .mock-menu { display: grid; gap: 0; max-width: 520px; border: 1px solid var(--sheet-grid); border-radius: 8px; overflow: hidden; background: var(--sheet-bg); color: var(--sheet-ink); font: 13px/1.3 Arial, Helvetica, sans-serif; }
+  .mock-menu .bar { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 7px 10px; background: var(--sheet-head); color: #3c4043; }
+  .mock-menu .bar .on { background: #e8f0fe; color: #174ea6; border-radius: 4px; padding: 0 6px; margin: 0 -6px; font-weight: 700; }
+  .mock-menu ul { list-style: none; margin: 0 0 0 auto; padding: 6px 0; width: min(290px, 100%); border-left: 1px solid var(--sheet-grid); box-shadow: -4px 6px 14px -8px rgb(0 0 0 / .3); }
+  .mock-menu li { padding: 6px 14px; }
+  .mock-menu li.sep { border-top: 1px solid var(--sheet-grid); margin-top: 4px; padding-top: 10px; }
+  .mock-menu li.hl { background: #e8f0fe; font-weight: 700; outline: 2px solid var(--gold); outline-offset: -2px; }
+  .mock-alert { max-width: 420px; background: var(--sheet-bg); color: var(--sheet-ink); border-radius: 8px; padding: 18px 20px 14px; box-shadow: 0 10px 30px -10px rgb(0 0 0 / .45);
+                border: 1px solid var(--sheet-grid); font: 14px/1.4 Arial, Helvetica, sans-serif; display: grid; gap: 10px; }
+  .mock-alert b { font-size: 16px; font-weight: 400; }
+  .mock-alert span { justify-self: end; background: #1a73e8; color: #fff; border-radius: 4px; padding: 7px 18px; font-weight: 700; }
+  .message { display: grid; gap: 10px; background: #e7f6dc; color: #111b21; border-radius: 12px 12px 12px 4px; padding: 14px 16px; max-width: 480px;
+             font: 15px/1.45 var(--body); box-shadow: 0 1px 1px rgb(0 0 0 / .12); }
+  .message p { white-space: pre-line; }
+  .copy-btn { justify-self: start; min-height: 40px; border: 1px solid var(--pine); background: var(--surface); color: var(--pine); border-radius: 999px; padding: 0 16px; font: 700 .9rem var(--body); cursor: pointer; }
+  .copy-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
   footer { color: var(--muted); font-size: .85rem; text-align: center; padding-top: 18px; border-top: 1px solid var(--line); }
   footer em { font: italic 400 1rem var(--display); color: var(--ink); }
 </style>
@@ -185,14 +205,76 @@
     </div>
   </section>
 
+  <section aria-labelledby="novas">
+    <h2 id="novas">Bancas novas<small>Cadastrar e mandar o link</small></h2>
+    <div class="body">
+      <p>Antes de uma banca mandar produtos, a organização coloca a banca na planilha e manda para ela um link de cadastro. Isso só pode ser feito pela <b>conta dona da planilha</b>.</p>
+      <ol class="steps">
+        <li>Abra a planilha e clique na aba <span class="tab">Bancas</span>, embaixo da tela.</li>
+        <li>Na primeira linha vazia, preencha:
+          <ul class="points" style="margin-top:6px">
+            <li><b>Nome</b>: o nome da banca como vai aparecer no catálogo.</li>
+            <li><b>Banca (nº)</b>: o número da mesa na feira, só o número.</li>
+            <li><b>Instagram</b>: se tiver. Pode escrever com ou sem @.</li>
+            <li><b>Sobre</b>: uma frase sobre a banca, se quiser. Até 160 letras.</li>
+          </ul>
+          Deixe <b>ID</b>, <b>Token</b> e <b>Link de cadastro</b> em branco. A planilha preenche sozinha.</li>
+      </ol>
+      <figure>
+        <div class="mock-sheet nowrap" role="img" aria-label="Desenho da aba Bancas com uma banca nova preenchida: nome, número, Instagram e Sobre. As colunas ID, Token e Link de cadastro estão em cinza, ainda vazias.">
+          <div class="tabs"><span>Categorias</span><span class="on">Bancas</span><span>Itens</span><span>Feira</span></div>
+          <table><thead><tr><th>ID</th><th>Nome</th><th>Banca (nº)</th><th>Instagram</th><th>Token</th><th>Link de cadastro</th><th>Sobre</th></tr></thead>
+          <tbody>
+            <tr><td>B01</td><td>Banca Teste</td><td>99</td><td></td><td class="auto">a8f3…</td><td class="link-cell">…/feiranatal2026/?cadastro=a8f3…</td><td></td></tr>
+            <tr class="new"><td class="auto">B02</td><td>Ateliê da Dona Cida</td><td>3</td><td>@atelie.cida</td><td class="auto">(vazio)</td><td class="auto">(vazio)</td><td>Bordados feitos à mão</td></tr>
+          </tbody></table>
+        </div>
+        <figcaption>A linha amarela é a banca nova. O que está em cinza a planilha preenche sozinha: o ID aparece assim que você digita o nome.</figcaption>
+      </figure>
+      <ol class="steps" start="3">
+        <li>No menu de cima da planilha, clique em <span class="menu">Catálogo</span>, depois em <span class="menu">Gerar links de cadastro</span>. Se o menu Catálogo não aparecer, recarregue a página e espere alguns segundos.</li>
+      </ol>
+      <figure>
+        <div class="mock-menu" role="img" aria-label="Desenho do menu da planilha com o menu Catálogo aberto e a opção Gerar links de cadastro destacada.">
+          <div class="bar"><span>Arquivo</span><span>Editar</span><span>Ver</span><span>Inserir</span><span>Formatar</span><span>Dados</span><span>Ferramentas</span><span>Extensões</span><span>Ajuda</span><span class="on">Catálogo</span></div>
+          <ul><li>Configurar planilha</li><li class="sep hl">Gerar links de cadastro</li><li>Gerar novo link (banca selecionada)</li><li>Renomear banca selecionada</li><li class="sep">Abrir prévia (inclui pendentes)</li><li>…</li></ul>
+        </div>
+        <figcaption>O menu Catálogo fica no fim da barra, depois de Ajuda.</figcaption>
+      </figure>
+      <ol class="steps" start="4">
+        <li>Aparece uma mensagem dizendo quantas bancas novas ganharam link. Clique em <b>OK</b>. A coluna <b>Link de cadastro</b> agora está preenchida.</li>
+      </ol>
+      <figure>
+        <div class="mock-alert" role="img" aria-label="Desenho da mensagem de confirmação: 1 banca nova com link, e o botão OK.">
+          <b>Links de cadastro</b>1 banca(s) nova(s) com link. Os links de todas as bancas foram atualizados na coluna "Link de cadastro". Os links antigos continuam funcionando.<span>OK</span>
+        </div>
+      </figure>
+      <ol class="steps" start="5">
+        <li>Clique na célula do link da banca e copie. No computador, Ctrl+C. No celular, segure o dedo na célula e escolha Copiar.</li>
+        <li>Mande o link para a banca pelo WhatsApp. Pode usar esta mensagem, trocando o nome e colando o link:</li>
+      </ol>
+      <div class="message">
+        <p id="msg">Olá, [nome da banca]! 🎄
+Este é o link para cadastrar os produtos da sua banca na Feira Beneficente de Natal:
+[cole o link aqui]
+
+Abra no celular, escolha as fotos e preencha nome, preço e quantidade de cada produto. Depois toque em Enviar tudo.
+Passo a passo com imagens: jrtedeschi.github.io/feiranatal2026/equipe/#bancas
+
+O link é só da sua banca, não compartilhe. Qualquer dúvida, é só chamar!</p>
+        <button class="copy-btn" id="copy-msg" type="button">Copiar mensagem</button>
+      </div>
+      <p class="note">Chegou mais uma banca depois? Faça igual: preencha a linha e use <span class="menu">Gerar links de cadastro</span> de novo. As bancas que já tinham link continuam com o mesmo. Na primeira vez que usar o menu, o Google pode pedir permissão: clique em Continuar e Permitir.</p>
+    </div>
+  </section>
+
   <section aria-labelledby="org">
     <h2 id="org">Organização<small>Antes da feira</small></h2>
     <div class="body">
       <ol class="steps">
-        <li>Na aba <span class="tab">Bancas</span>, preencha uma linha por banca: <b>Nome</b>, <b>Banca (nº)</b>, <b>Instagram</b> e <b>Sobre</b>, uma frase sobre a banca. Instagram e Sobre são opcionais. O código da banca (B01, B02…) aparece sozinho.</li>
+        <li>Cadastre as bancas e mande o link de cada uma, como explicado em <b>Bancas novas</b>, logo acima.</li>
         <li>Na aba <span class="tab">Feira</span>, escreva a <b>Data</b>, o <b>Horário</b>, o <b>Local</b> e a <b>Causa</b> que a feira apoia. Isso aparece no topo do catálogo. O que ficar vazio não aparece.</li>
-        <li>Clique em <span class="menu">Catálogo → Gerar links de cadastro</span>. Copie o link da coluna <b>Link de cadastro</b> e mande para a banca pelo WhatsApp. Cada banca tem o seu link.</li>
-        <li>Quando os produtos chegarem, abra a aba <span class="tab">Itens</span>. Olhe a foto na coluna <b>Prévia</b>, confira nome e preço e marque <b>Visível no catálogo</b>. Só aparece no catálogo o que estiver marcado.</li>
+<li>Quando os produtos chegarem, abra a aba <span class="tab">Itens</span>. Olhe a foto na coluna <b>Prévia</b>, confira nome e preço e marque <b>Visível no catálogo</b>. Só aparece no catálogo o que estiver marcado.</li>
         <li>Linha vermelha quer dizer que falta algo ou que um valor está errado: preço, quantidade, categoria ou banca. Corrija e a linha volta ao normal.</li>
         <li>Para ver o catálogo com os produtos que ainda não foram aprovados, use <span class="menu">Catálogo → Abrir prévia</span>. Esse link é só da organização.</li>
         <li>Quando acabar o prazo, use <span class="menu">Catálogo → Fechar cadastro</span>. Os links das bancas param de aceitar produtos. Dá para reabrir pelo mesmo menu.</li>
@@ -300,5 +382,13 @@
 
   <footer>Dúvidas? Fale com a organização da feira.<br><em>Obrigado por ajudar a fazer a feira acontecer!</em></footer>
 </div>
+<script>
+  document.getElementById('copy-msg').addEventListener('click', function () {
+    var btn = this, text = document.getElementById('msg').innerText;
+    function done(ok) { btn.textContent = ok ? 'Mensagem copiada' : 'Selecione o texto e copie'; setTimeout(function () { btn.textContent = 'Copiar mensagem'; }, 2500); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); });
+    else done(false);
+  });
+</script>
 </body>
 </html>
