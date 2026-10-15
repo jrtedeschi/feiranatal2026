@@ -274,7 +274,7 @@ O link é só da sua banca, não compartilhe. Qualquer dúvida, é só chamar!</
       <ol class="steps">
         <li>Cadastre as bancas e mande o link de cada uma, como explicado em <b>Bancas novas</b>, logo acima.</li>
         <li>Na aba <span class="tab">Feira</span>, escreva a <b>Data</b>, o <b>Horário</b>, o <b>Local</b> e a <b>Causa</b> que a feira apoia. Isso aparece no topo do catálogo. O que ficar vazio não aparece.</li>
-        <li>Ainda na aba <span class="tab">Feira</span>, ligue o <b>carrinho</b>: em <b>WhatsApp</b>, escreva o número da organização com DDD, por exemplo <b>(11) 98765-4321</b>. Em <b>Formas de pagamento</b>, deixe só as que a feira aceita, separadas por vírgula (Pix, Dinheiro, Cartão de Crédito, Cartão de Débito, Boleto). Em <b>Parcelas máx.</b>, coloque até quantas vezes dá para parcelar no Crédito ou no Boleto. Com 1, não aparece parcelamento. Sem um número de WhatsApp válido, o carrinho fica escondido. Se essas linhas não estiverem lá, use <span class="menu">Catálogo → Configurar planilha</span>.</li>
+        <li>Ainda na aba <span class="tab">Feira</span>, ligue o <b>carrinho</b>: em <b>WhatsApp</b>, escreva o número da organização com DDD, por exemplo <b>(11) 98765-4321</b>. Em <b>Formas de pagamento</b>, deixe só as que a feira aceita, separadas por vírgula (Pix, Dinheiro, Cartão de Crédito, Cartão de Débito, Boleto). No site, Boleto aparece como <b>Boleto (sócios)</b> e pede o nome do sócio titular. Em <b>Parcelas máx.</b>, coloque até quantas vezes dá para parcelar no Crédito ou no Boleto. Com 1, não aparece parcelamento. Sem um número de WhatsApp válido, o carrinho fica escondido. Se essas linhas não estiverem lá, use <span class="menu">Catálogo → Configurar planilha</span>.</li>
 <li>Quando os produtos chegarem, abra a aba <span class="tab">Itens</span>. Olhe a foto na coluna <b>Prévia</b>, confira nome e preço e marque <b>Visível no catálogo</b>. Só aparece no catálogo o que estiver marcado.</li>
         <li>Linha vermelha quer dizer que falta algo ou que um valor está errado: preço, quantidade, categoria ou banca. Corrija e a linha volta ao normal.</li>
         <li>Para ver o catálogo com os produtos que ainda não foram aprovados, use <span class="menu">Catálogo → Abrir prévia</span>. Esse link é só da organização.</li>
@@ -337,7 +337,7 @@ O link é só da sua banca, não compartilhe. Qualquer dúvida, é só chamar!</
         <li>Abrem o catálogo pelo QR code dos cartazes ou pelo link que a feira divulgar. Cada banca também pode ter o QR code da própria página.</li>
         <li>Podem buscar pelo nome, filtrar por categoria e abrir a lista de <b>Bancas</b> para ver os produtos de cada uma.</li>
         <li>Podem tocar em <b>Adicionar ao carrinho</b> e, no fim, em <b>Finalizar pelo WhatsApp</b>. Isso abre uma conversa com o número da organização com a mensagem pronta: os produtos de cada banca, o total, a forma de pagamento, as parcelas e o nome.</li>
-        <li>A mensagem é só um pedido. Nada fica reservado e a planilha não muda sozinha. O pagamento e a retirada continuam na banca, no dia da feira.</li>
+        <li>A mensagem é só um pedido. Nada fica reservado e a planilha não muda sozinha. A retirada é sempre na banca, no dia da feira. O Pix pode ser pago antes, o Boleto é só para sócios (vai na mensalidade do Centro) e o resto se paga na banca.</li>
       </ul>
     </div>
   </section>
@@ -352,6 +352,15 @@ O link é só da sua banca, não compartilhe. Qualquer dúvida, é só chamar!</
         <li>Quando chegar a <b>0</b>, o catálogo mostra o carimbo <span class="stamp">VENDIDO</span>. O site atualiza em até 1 minuto.</li>
       </ol>
       <p class="note"><b>Pedidos pelo WhatsApp:</b> quem cuida do número da organização responde cada mensagem. Quando combinar a compra, diminua a <b>Quantidade</b> do produto na aba <span class="tab">Itens</span>, procurando pelo código que vem na mensagem (por exemplo <b>I0029</b>). Se duas pessoas pedirem a mesma peça única, fica com quem foi confirmado primeiro na conversa.</p>
+      <p class="note"><b>Depois de confirmar:</b> fixe a conversa, encaminhe o pedido para o WhatsApp da banca e, no dia da feira, leve uma lista por banca. A peça fica guardada até 1 hora antes do fim da feira; depois disso a banca pode vender e a <b>Quantidade</b> volta a subir.</p>
+      <details class="note"><summary><b>Textos prontos para responder</b> (troque o que está entre chaves)</summary>
+        <p><b>Recebido:</b> Oi, {nome}! Recebemos seu pedido 🎄 Vamos conferir com a banca e respondemos ainda hoje.</p>
+        <p><b>Confirmado — Pix:</b> Oi, {nome}! Pedido confirmado ✅ Separamos para você: {itens}. Total: {total}. Se quiser pagar antes, o Pix é {chave Pix do Centro} — mande o comprovante aqui. Se preferir, paga na banca no dia. Retirada na Banca {nº}, no dia da feira ({data}, {horário}, {local}). Guardamos até 1 hora antes do fim da feira.</p>
+        <p><b>Confirmado — Boleto (sócios):</b> Oi, {nome}! Pedido confirmado ✅ Separamos para você: {itens}. Total: {total}. Vamos lançar na mensalidade de {sócio titular}{, em N vezes de R$ …}. Retirada na Banca {nº}, no dia da feira ({data}, {horário}, {local}). Guardamos até 1 hora antes do fim da feira.</p>
+        <p><b>Confirmado — Dinheiro ou cartão:</b> Oi, {nome}! Pedido confirmado ✅ Separamos para você: {itens}. Total: {total}. O pagamento é na banca, no dia da feira (no crédito dá para parcelar na maquininha). Retirada na Banca {nº}, no dia da feira ({data}, {horário}, {local}). Guardamos até 1 hora antes do fim da feira.</p>
+        <p><b>Já vendido:</b> Oi, {nome}! Que pena — {item} já foi vendido 😕 Os outros itens do seu pedido seguem confirmados. Quer ver outras peças da banca? {link da banca}</p>
+        <p><b>Aviso para a banca:</b> Banca {nº}: peça reservada ✅ {item} ({código}) para {nome}. Retirada no dia da feira. Se a pessoa não aparecer até 1 hora antes do fim, pode vender.</p>
+      </details>
       <figure>
         <div class="mock-sale" role="img" aria-label="A quantidade de um produto muda de 1 para 0 na planilha, e o produto aparece no site com o carimbo VENDIDO.">
           <div class="change"><span class="muted">Coluna Quantidade</span><div class="vals"><b>1</b><i>→</i><b class="now">0</b></div></div>
