@@ -38,6 +38,33 @@
     var value = incoming.get(key);
     if (value && PATTERNS[key].test(value)) forwarded.set(key, value);
   });
+  // Carrinho storage for the catalog (src/Cart.html). Storage inside Google's frames doesn't survive on iPhone,
+  // this page's does. Only the catalog's sandbox origin may talk to it, and only well-formed carts are kept.
+  var CATALOG_ORIGIN = /^https:\/\/n-[a-z0-9]+-[a-z0-9]+-script\.googleusercontent\.com$/;
+  var CART_KEY = 'catalogo:carrinho:v1';
+  function cleanCart(cart) {
+    if (!cart || typeof cart !== 'object' || !cart.items || typeof cart.items !== 'object') return null;
+    var items = {};
+    Object.keys(cart.items).slice(0, 300).forEach(function (id) {
+      var n = cart.items[id];
+      if (/^I\d{1,6}$/.test(id) && Number.isInteger(n) && n >= 1 && n <= 99) items[id] = n;
+    });
+    return { items: items, name: typeof cart.name === 'string' ? cart.name.slice(0, 80) : '' };
+  }
+  function readCart() {
+    try { return cleanCart(JSON.parse(localStorage.getItem(CART_KEY))); } catch (err) { return null; }
+  }
+  window.addEventListener('message', function (e) {
+    var msg = e.data;
+    if (!CATALOG_ORIGIN.test(e.origin) || !e.source || !msg || msg.catalogoCart !== 1) return;
+    if (msg.type === 'save') {
+      var cart = cleanCart(msg.cart);
+      if (cart) { try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (err) { /* storage full or blocked: cart stays in the page */ } }
+      return;
+    }
+    if (msg.type === 'load') e.source.postMessage({ catalogoCart: 1, type: 'state', cart: readCart() }, e.origin);
+  });
+
   var frame = document.createElement('iframe');
   frame.title = forwarded.has('cadastro') ? 'Cadastro de produtos' : 'Catálogo da Feira Beneficente de Natal';
   frame.src = EXEC + (forwarded.toString() ? '?' + forwarded.toString() : '');
