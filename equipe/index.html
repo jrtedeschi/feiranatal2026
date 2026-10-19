@@ -53,6 +53,19 @@
   .s-pend { color: var(--gold); } .s-ok { color: var(--pine); } .s-sold { color: var(--berry); }
   .note { border-left: 3px solid var(--gold); padding: 8px 12px; background: var(--surface); border-radius: 0 8px 8px 0; font-size: .93rem; }
 
+  .toc { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; display: grid; gap: 10px; }
+  .toc h2 { margin: 0; color: var(--gold); font: 700 .74rem/1 var(--body); letter-spacing: .2em; text-transform: uppercase; }
+  .toc ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px 18px; counter-reset: toc; }
+  .toc li { counter-increment: toc; }
+  .toc a { display: flex; gap: 10px; align-items: baseline; padding: 6px 4px; border-radius: 6px; color: var(--ink); text-decoration: none; }
+  .toc a::before { content: counter(toc, decimal-leading-zero); color: var(--pine); font: 650 .85rem/1 var(--display); min-width: 1.6em; }
+  .toc a small { color: var(--muted); font-size: .8rem; }
+  .toc a:hover { background: color-mix(in srgb, var(--pine) 8%, transparent); }
+  .toc a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  @media (max-width: 560px) { .toc ol { grid-template-columns: 1fr; } }
+  [id] { scroll-margin-top: 16px; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
   .table-wrap { overflow-x: auto; }
   table { width: 100%; border-collapse: collapse; font-size: .93rem; }
   th { text-align: left; font: 700 .72rem/1.2 var(--body); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding: 0 12px 8px 0; border-bottom: 1px solid var(--line); }
@@ -158,6 +171,21 @@
     <h1>Guia do Catálogo</h1>
     <p class="lead">Como o catálogo funciona, do cadastro das bancas até o dia da feira.</p>
   </header>
+
+  <nav class="toc" aria-labelledby="indice">
+    <h2 id="indice">Índice</h2>
+    <ol>
+      <li><a href="#oque">Primeiro, o que é isto?</a></li>
+      <li><a href="#links">Links <small>guarde estes</small></a></li>
+      <li><a href="#novas">Bancas novas <small>cadastrar e mandar o link</small></a></li>
+      <li><a href="#org">Organização <small>antes da feira</small></a></li>
+      <li><a href="#bancas">Bancas <small>como cadastrar os produtos</small></a></li>
+      <li><a href="#visitantes">Visitantes <small>ver o catálogo</small></a></li>
+      <li><a href="#dia">Voluntários <small>no dia da feira</small></a></li>
+      <li><a href="#whatsapp">Intenções de compra pelo WhatsApp <small>confirmar reservas</small></a></li>
+      <li><a href="#problemas">Se algo der errado</a></li>
+    </ol>
+  </nav>
 
   <section class="intro" aria-labelledby="oque">
     <h2 id="oque">Primeiro, o que é isto?</h2>
@@ -355,7 +383,7 @@ O link é só da sua banca, não compartilhe. Qualquer dúvida, é só chamar!</
         <li>A coluna <b>Disponível</b>, no fim da aba, mostra o que ainda pode ser vendido: a Quantidade menos as reservas da aba <span class="tab">Vendas</span>. Ela se calcula sozinha, não digite nela. Número <b>vermelho e negativo</b> quer dizer que a mesma peça foi vendida duas vezes: avise a organização.</li>
         <li>Quando chegar a <b>0</b>, o catálogo mostra o carimbo <span class="stamp">VENDIDO</span>. O site atualiza em até 1 minuto.</li>
       </ol>
-      <p class="note"><b>Intenções de compra pelo WhatsApp:</b> quem cuida do número da organização responde cada mensagem. Para confirmar, copie a mensagem, abra a página <b>Confirmar reservas</b> (<code>…/feiranatal2026/?operador=1</code>), entre com o token do operador, cole a mensagem e toque em <b>Ler mensagem</b>. Se a mensagem disser “…e mais N itens”, peça a lista completa no chat, adicione cada código e marque <b>Já adicionei todos os itens que faltavam</b>. Confira os itens e toque em <b>Confirmar reserva</b>: a reserva vai para a aba <span class="tab">Vendas</span> e a peça sai do catálogo. Não mexa na <b>Quantidade</b>. Se a página disser que falta estoque, a peça já foi vendida ou reservada: use o texto <b>Já vendido</b>.</p>
+      <p class="note" id="whatsapp"><b>Intenções de compra pelo WhatsApp:</b> quem cuida do número da organização responde cada mensagem. Para confirmar, copie a mensagem, abra a página <b>Confirmar reservas</b> (<code>…/feiranatal2026/?operador=1</code>), entre com o token do operador, cole a mensagem e toque em <b>Ler mensagem</b>. Se a mensagem disser “…e mais N itens”, peça a lista completa no chat, adicione cada código e marque <b>Já adicionei todos os itens que faltavam</b>. Confira os itens e toque em <b>Confirmar reserva</b>: a reserva vai para a aba <span class="tab">Vendas</span> e a peça sai do catálogo. Não mexa na <b>Quantidade</b>. Se a página disser que falta estoque, a peça já foi vendida ou reservada: use o texto <b>Já vendido</b>.</p>
       <p class="note"><b>Depois de confirmar:</b> fixe a conversa e encaminhe a reserva para o WhatsApp da banca. No dia da feira, use <b>Reservas em aberto</b> na mesma página (ou <b>Imprimir lista por banca</b>): toque em <b>Retirou</b> quando a pessoa retirar (se a reserva tem várias peças, dá para escolher quantas). A peça fica guardada até 1 hora antes do fim da feira; se a pessoa não vier, toque em <b>Não veio</b> na lista e depois em <b>Confirmar: não veio</b>, e a peça volta ao catálogo. O token do operador é gerado pela organização no menu <b>Catálogo → Gerar token do operador</b>; guarde-o no gerenciador de senhas do celular e nunca o mande por link.</p>
       <details class="note"><summary><b>Textos prontos para responder</b> (troque o que está entre chaves)</summary>
         <p><b>Recebido:</b> Oi, {nome}! Recebemos seu pedido 🎄 Vamos conferir com a banca e respondemos ainda hoje.</p>
