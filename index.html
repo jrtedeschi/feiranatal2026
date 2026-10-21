@@ -31,8 +31,8 @@
   // Same deep-link params the catalog accepts (see Core.js parseRouteParams); anything else is dropped.
   var EXEC = 'https://script.google.com/macros/s/AKfycbzBUKwrPuA_W9xHBCx38d-Ea5HERya7MVBspRMyTim9AFP8LBlvsYv9RyXEdEUYVVc/exec';
   // cadastro = a vendor's upload token (32 hex chars from Utilities.getUuid without dashes).
-  // operador = the operator page flag; its token is typed on the page, never put in the link.
-  var PATTERNS = { banca: /^B\d{1,4}$/, item: /^I\d{1,6}$/, ver: /^(bancas|produtos)$/, cat: /^[^<>"'&]{1,40}$/, cadastro: /^[A-Fa-f0-9]{32}$/, operador: /^1$/ };
+  // operador, caixa = staff page flags; their tokens are typed on the page, never put in the link.
+  var PATTERNS = { banca: /^B\d{1,4}$/, item: /^I\d{1,6}$/, ver: /^(bancas|produtos)$/, cat: /^[^<>"'&]{1,40}$/, cadastro: /^[A-Fa-f0-9]{32}$/, operador: /^1$/, caixa: /^1$/ };
   var incoming = new URLSearchParams(location.search);
   var forwarded = new URLSearchParams();
   Object.keys(PATTERNS).forEach(function (key) {
@@ -67,7 +67,7 @@
   });
 
   var frame = document.createElement('iframe');
-  frame.title = forwarded.has('cadastro') ? 'Cadastro de produtos' : forwarded.has('operador') ? 'Confirmar pedidos' : 'Catálogo da Feira Beneficente de Natal';
+  frame.title = forwarded.has('cadastro') ? 'Cadastro de produtos' : forwarded.has('operador') ? 'Confirmar reservas' : forwarded.has('caixa') ? 'Caixa' : 'Catálogo da Feira Beneficente de Natal';
   frame.src = EXEC + (forwarded.toString() ? '?' + forwarded.toString() : '');
   frame.allow = 'clipboard-write';
   document.body.appendChild(frame);
